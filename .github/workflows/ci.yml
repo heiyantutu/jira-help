@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: 构建 / 校验 / 测试
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 构建 + 功能校验 + 测试
+        run: npm run check
+
+      - name: 确认 dist/jira.user.js 已随源码更新
+        run: git diff --exit-code -- dist/jira.user.js

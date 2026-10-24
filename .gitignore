@@ -1,0 +1,20 @@
+# 依赖
+node_modules/
+
+# 本地 npm 缓存（沙箱环境下使用 workspace 内缓存）
+.npm-cache/
+
+# 构建缓存
+.rollup.cache/
+*.log
+
+# 编辑器 / 系统
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# 测试覆盖率
+coverage/
+
+# 注意：dist/ 构建产物需要提交，方便直接从 GitHub 安装与发布
